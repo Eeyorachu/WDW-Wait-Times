@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>🎟️ WDW Reservations</title>
+<style>
+body{font-family:Arial,sans-serif;margin:0;background:#f4f6f8;color:#17202a}
+header{background:#17324d;color:#fff;padding:18px;text-align:center}
+h1{margin:0;font-size:26px}
+main{max-width:800px;margin:auto;padding:18px 12px 30px}
+.card{display:flex;justify-content:space-between;align-items:center;gap:16px;background:#fff;border-radius:12px;margin:10px 0;padding:15px;box-shadow:0 1px 4px #ddd}
+.name{font-weight:700;font-size:17px}
+.small{display:block;color:#68737d;font-size:13px;margin-top:5px}
+.countdown{font-size:18px;font-weight:800;white-space:nowrap;text-align:right}
+.back{display:inline-block;margin-bottom:14px;padding:10px 14px;background:#fff;border-radius:10px;text-decoration:none;color:#17324d;font-weight:700;box-shadow:0 1px 4px #bbb}
+</style>
+</head>
+<body>
+<header><h1>🎟️ WDW Reservations</h1></header>
+<main>
+<a class="back" href="wdw_live_wait_times.html">← Back to Wait Times</a>
+
+<div class="card">
+  <div class="name">🦜 Beak and Barrel<span class="small">10:00 AM • Monday, September 21</span></div>
+  <div class="countdown" data-date="2026-09-21T10:00:00">—</div>
+</div>
+
+<div class="card">
+  <div class="name">✨ Geo 82<span class="small">12:45 PM • Wednesday, September 23</span></div>
+  <div class="countdown" data-date="2026-09-23T12:45:00">—</div>
+</div>
+
+<div class="card">
+  <div class="name">🚀 Space 220 Lounge<span class="small">11:35 AM • Monday, September 28</span></div>
+  <div class="countdown" data-date="2026-09-28T11:35:00">—</div>
+</div>
+
+</main>
+<script>
+function updateCountdowns(){
+  const now=new Date();
+  document.querySelectorAll('.countdown').forEach(el=>{
+    const target=new Date(el.dataset.date);
+    const diff=target-now;
+    if(diff<=0){el.textContent='Today';return;}
+    const days=Math.ceil(diff/86400000);
+    el.textContent=days===1?'1 day':days+' days';
+  });
+}
+updateCountdowns();
+setInterval(updateCountdowns,60000);
+</script>
+</body>
+</html>
